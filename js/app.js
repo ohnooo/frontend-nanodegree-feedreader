@@ -71,6 +71,7 @@ function init() {
 
                  if (cb) {
                      cb();
+                     return status;
                  }
                },
        error: function (result, status, err){
