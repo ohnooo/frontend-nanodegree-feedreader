@@ -56,7 +56,6 @@ $(function() {
         // Jquery variable
         var $body = $('body'),
             $menuIconLink = $('.menu-icon-link'),
-            $menu = $('.menu');
 
         /* TODO: Write a test that ensures the menu element is
          * hidden by default. You'll have to analyze the HTML and
@@ -64,7 +63,6 @@ $(function() {
          * hiding/showing of the menu element.
          */
          it('Menu should be hidden by default', function(){
-            var className = document.body.className;
             expect($body.hasClass('menu-hidden')).toEqual(true);
          });
 
@@ -79,7 +77,7 @@ $(function() {
 
             $menuIconLink.trigger('click');
             expect($body.hasClass('menu-hidden')).toEqual(true);
-          })
+          });
     });
 
     /* TODO: Write a new test suite named "Initial Entries" */
@@ -92,15 +90,14 @@ $(function() {
          */
          var id = 0;
          beforeEach(function(done){
-            funcStatus = loadFeed(id, function(){
+            loadFeed(id, function(){
                 done();
             });
          });
 
-         it('Load is complete', function(done){
+         it('Load is complete', function(){
             var numEntry = $(".entry-link").length;
             expect(numEntry).toBeGreaterThan(0);
-            done();
          });
     });
     /* TODO: Write a new test suite named "New Feed Selection"*/
@@ -120,10 +117,12 @@ $(function() {
          it('Content change to new feeds', function(done){
             loadFeed(1, function(){
                 newContent = $('.feed').find('h2').text();
+
+                // expect inside of done to achieve asynchronous
+                expect(content).not.toEqual(newContent);
                 done();
             });
 
-            expect(content).not.toEqual(newContent);
 
          })
 
