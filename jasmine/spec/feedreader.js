@@ -53,7 +53,8 @@ $(function() {
     describe('The Menu', function(){
         // Jquery variable
         var $body = $('body'),
-            $menuIconLink = $('.menu-icon-link');
+            $menuIconLink = $('.menu-icon-link'),
+            $menuList = $('.feed-list');
 
         /* it <define spec> - Menu hidden by default
          * if <body> has class 'menu-hidden'
@@ -62,17 +63,36 @@ $(function() {
             expect($body.hasClass('menu-hidden')).toEqual(true);
          });
 
-          /* it <define spec> - Menu change when click on icon
-           * $menuIconLink.trigger<fake trigger>
-           * http://api.jquery.com/trigger/
-           */
-          it('Menu should toggle', function(){
+        /* it <define spec> - Menu change when click on icon
+         * $menuIconLink.trigger<fake trigger>
+         * http://api.jquery.com/trigger/
+         */
+         it('Menu should toggle', function(){
             $menuIconLink.trigger('click');
             expect($body.hasClass('menu-hidden')).toEqual(false);
 
             $menuIconLink.trigger('click');
             expect($body.hasClass('menu-hidden')).toEqual(true);
-          });
+         });
+
+        /* &&& Additional Test &&& */
+
+        /* it <define spec> - Menu is properly loaded
+         * class feed-list > 0
+         */
+         it('Menu is loaded', function(){
+            var numItem = $menuList.length;
+            expect(numItem).toBeGreaterThan(0);
+         });
+
+        /* it <define spec> - feedList when clicked menu is hidden
+         * Hide when clicked
+         */
+         it('Item is clicked to hide menu', function(){
+
+            $menuList.trigger('click');
+            expect($body.hasClass('menu-hidden')).toEqual(true);
+         })
     });
 
     /* "Initial Entries" */
