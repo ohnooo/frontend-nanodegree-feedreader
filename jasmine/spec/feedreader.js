@@ -32,7 +32,7 @@ $(function() {
          it('allFeeds has URL and not empty', function(){
             for(var i = 0; i< allFeeds.length; i++ ){
                 expect(allFeeds[i].url).toBeDefined();
-                expect(allFeeds[i].url).not.toBe(undefined);
+                expect(allFeeds[i].url).not.toBe('');
             }
          });
 
@@ -43,7 +43,7 @@ $(function() {
          it('allFeeds has name and not empty', function(){
             for(var i = 0; i< allFeeds.length; i++ ){
                 expect(allFeeds[i].name).toBeDefined();
-                expect(allFeeds[i].name).not.toBe(undefined);
+                expect(allFeeds[i].name).not.toBe('');
             }
          });
     });
@@ -54,7 +54,8 @@ $(function() {
         // Jquery variable
         var $body = $('body'),
             $menuIconLink = $('.menu-icon-link'),
-            $menuList = $('.feed-list');
+            $menuList = $('.feed-list'),
+            $links = $('.feed-list li a');
 
         /* it <define spec> - Menu hidden by default
          * if <body> has class 'menu-hidden'
@@ -81,8 +82,8 @@ $(function() {
          * class feed-list > 0
          */
          it('Menu is loaded', function(){
-            var numItem = $menuList.length;
-            expect(numItem).toBeGreaterThan(0);
+            console.log($links);
+            expect($links).not.toBe('');
          });
 
         /* it <define spec> - feedList when clicked menu is hidden
@@ -92,7 +93,7 @@ $(function() {
 
             $menuList.trigger('click');
             expect($body.hasClass('menu-hidden')).toEqual(true);
-         })
+         });
     });
 
     /* "Initial Entries" */
@@ -104,7 +105,7 @@ $(function() {
          var id = 0;
          beforeEach(function(done){
             loadFeed(id, done);
-         });''
+         });
 
          /* it <define spec> - Makes sure load is complete
           * If complete number entry > 0
@@ -147,9 +148,9 @@ $(function() {
             });
 
 
-         })
+         });
 
-    })
+    });
 
 
 }());
