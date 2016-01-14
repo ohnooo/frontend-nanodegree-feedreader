@@ -55,7 +55,7 @@ $(function() {
         var $body = $('body'),
             $menuIconLink = $('.menu-icon-link'),
             $menuList = $('.feed-list'),
-            $links = $('.feed-list li a');
+            $links = $('.feed-list li a').text();
 
         /* it <define spec> - Menu hidden by default
          * if <body> has class 'menu-hidden'
